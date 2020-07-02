@@ -34,7 +34,7 @@ export const NewTransaction = () => {
             <h3>Add new transaction</h3>
             <form>
                 <div className="form-control">
-                    <label htmlFor="text">Text</label>
+                    <label htmlFor="text">Description</label>
                     <input
                         type="text"
                         placeholder="Enter text..."
