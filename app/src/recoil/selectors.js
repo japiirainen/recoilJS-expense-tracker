@@ -33,3 +33,15 @@ export const expenseStatsState = selector({
         }
     },
 })
+
+export const transactionListLocalStorage = selector({
+    key: 'transactionListLocalStorage',
+    get: ({ get }) => {
+        const transactionList = get(transactionListState)
+        localStorage.setItem(
+            'TRANSACTION_LIST',
+            JSON.stringify(transactionList)
+        )
+        return transactionList
+    },
+})

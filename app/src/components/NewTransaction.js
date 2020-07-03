@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { transactionListState } from '../recoil/atoms'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { v4 as uuidv4 } from 'uuid'
 
 export const NewTransaction = () => {
     const [textValue, setTextValue] = useState('')
     const [amount, setAmount] = useState(0)
-    const setTransactionList = useSetRecoilState(transactionListState)
+    const [transactionList, setTransactionList] = useRecoilState(
+        transactionListState
+    )
 
     const NewTransaction = (e) => {
         e.preventDefault()
@@ -21,6 +23,12 @@ export const NewTransaction = () => {
         setTextValue('')
         setAmount(0)
     }
+    useEffect(() => {
+        localStorage.setItem(
+            'TRANSACTION_LIST',
+            JSON.stringify(transactionList)
+        )
+    }, [transactionList])
 
     const handleTextValue = (e) => {
         setTextValue(e.target.value)
